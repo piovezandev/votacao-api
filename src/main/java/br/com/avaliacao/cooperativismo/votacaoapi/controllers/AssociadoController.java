@@ -36,8 +36,8 @@ public class AssociadoController {
 	}
 	
 	@GetMapping("/{cpf}")
-	public AssociadoDTO buscaAssociadoPorCpf(@PathVariable String cpf, Pageable pageable) {
-		return associadoService.buscarAssociadoPorCPF(pageable, cpf);
+	public AssociadoDTO buscaAssociadoPorCpf(@PathVariable String cpf) {
+		return associadoService.buscarAssociadoPorCPF(cpf);
 	}
 	
 }

@@ -28,7 +28,7 @@ public class AssociadoService {
 		return response;
 	}
 	
-	public AssociadoDTO buscarAssociadoPorCPF(Pageable pageable, String cpf) {
+	public AssociadoDTO buscarAssociadoPorCPF(String cpf) {
 		List<Associado> listaEntidade = repository.findAll();		
 		
 		return listaEntidade
