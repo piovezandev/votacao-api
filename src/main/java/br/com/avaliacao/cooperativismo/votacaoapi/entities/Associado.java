@@ -1,5 +1,6 @@
 package br.com.avaliacao.cooperativismo.votacaoapi.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Associado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	@Column(name="cpf", nullable=false, length=11)
 	private String cpf;
 	
 	public Associado() {};
