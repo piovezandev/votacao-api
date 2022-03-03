@@ -42,9 +42,10 @@ public class Pauta {
 
 	public void setCount(Integer count) {
 		this.count = count;
-	};
-	
-	
-	
+	}
+
+	public Set<Votacao> getVotos() {
+		return votos;
+	};	
 	
 }
