@@ -1,6 +1,7 @@
 package br.com.avaliacao.cooperativismo.votacaoapi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,8 @@ public class VotacaoController {
 	private VotacaoService votacaoService;
 	
 	@PutMapping
-	public PautaDTO votar(@RequestBody VotacaoDTO votacaoDTO){
-		PautaDTO pautaDTO = votacaoService.criaSessaoVotoPauta(votacaoDTO);
-		return pautaDTO;
+	public ResponseEntity<PautaDTO> votar(@RequestBody VotacaoDTO votacaoDTO){
+		return votacaoService.criaSessaoVotoPauta(votacaoDTO);
 	}
 	
 	
