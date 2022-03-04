@@ -1,8 +1,10 @@
 package br.com.avaliacao.cooperativismo.votacaoapi.entities;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,8 @@ public class Pauta {
 	private Integer count;
 	@OneToMany(mappedBy = "id.pauta")
 	private Set<Votacao> votos = new HashSet<>();
+	@Column(name = "data_sessao", columnDefinition = "TIMESTAMP")
+	private LocalDateTime dataSessao;
 
 	public Pauta() {}
 
@@ -46,6 +50,14 @@ public class Pauta {
 
 	public Set<Votacao> getVotos() {
 		return votos;
+	}
+
+	public LocalDateTime getDataSessao() {
+		return dataSessao;
+	}
+
+	public void setDataSessao(LocalDateTime dataSessao) {
+		this.dataSessao = dataSessao;
 	};	
-	
+
 }
