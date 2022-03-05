@@ -3,6 +3,8 @@ package br.com.avaliacao.cooperativismo.votacaoapi.services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import br.com.avaliacao.cooperativismo.votacaoapi.repositories.VotacaoRepository
 public class VotacaoService {
 
 	private static final String VALIDA_CPF_API = "https://user-info.herokuapp.com/users/%s";
+	Logger logger = LoggerFactory.getLogger(VotacaoService.class);
 
 	@Autowired
 	private VotacaoRepository votacaoRepository;
@@ -42,6 +45,8 @@ public class VotacaoService {
 	public ResponseEntity<PautaDTO> criaSessaoVotoPauta(VotacaoDTO votacaoDTO) {
 		boolean isDeveVotar = validaCpf(votacaoDTO.getCpf());
 
+		logger.info(String.format("CPF valido? : %s", isDeveVotar));
+		
 		if (isDeveVotar) {
 
 			Associado associado = associadoRepository.findByCpf(votacaoDTO.getCpf());
@@ -57,6 +62,8 @@ public class VotacaoService {
 				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 			}
 			
+			logger.info(String.format("Criando Pauta para votação, CPF associado: [%s]", associado.getCpf()));
+			
 			Pauta pauta = new Pauta();
 
 			if (validaData()) {
@@ -69,9 +76,11 @@ public class VotacaoService {
 				Votacao votacao = new Votacao();
 				votacao.setAssociado(associado);
 				votacao.setVoto(votacaoDTO.getVoto());
-				votacao.setPauta(pauta);
+				votacao.setPauta(pauta);	
 
 				votacao = votacaoRepository.saveAndFlush(votacao);
+				
+				logger.info(String.format("Votação concluida, CPF associado: [%s], voto: [%s]", associado.getCpf(), votacao.getVoto()));
 
 			} else {
 				pauta.setDataSessao(LocalDateTime.now());
@@ -84,6 +93,9 @@ public class VotacaoService {
 				votacao.setPauta(pauta);
 
 				votacao = votacaoRepository.saveAndFlush(votacao);
+				
+				logger.info(String.format("Votação concluida, CPF associado: [%s], voto: [%s]", associado.getCpf(), votacao.getVoto()));
+
 			}
 
 			Integer resultado = getSomaVotos(pauta.getId());
@@ -102,6 +114,8 @@ public class VotacaoService {
 
 		StatusDTO status = restTemplate.getForObject(String.format(VALIDA_CPF_API, cpf.trim()), StatusDTO.class);
 
+		logger.info(String.format("Validando CPF, response API : %s", status.getStatus()));
+		
 		if (status.getStatus().equals(VotacaoEnum.ABLE_TO_VOTE.isDeveVotar)) {
 			return true;
 		} else {
