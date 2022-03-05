@@ -20,23 +20,26 @@ import br.com.avaliacao.cooperativismo.votacaoapi.services.AssociadoService;
 @RequestMapping(value = "/associado")
 public class AssociadoController {
 	
-	 Logger logger = LoggerFactory.getLogger(AssociadoController.class);
+	Logger logger = LoggerFactory.getLogger(AssociadoController.class);
 	
 	@Autowired
 	private AssociadoService associadoService;
 
 	@PostMapping(value = "/cadastro")
 	public AssociadoDTO cadastrarAssociado(@RequestBody Associado associado){
+		logger.info("Acessou controller cadastro de Associado");
 		return associadoService.salvarAssociado(associado);
 	}
 	
 	@GetMapping
 	public Page<AssociadoDTO> buscarTodosAssociados(Pageable pageable){
+		logger.info("Acessou controller de buscar todos associados paginado");
 		return associadoService.buscarTodos(pageable);
 	}
 	
 	@GetMapping("/{cpf}")
 	public AssociadoDTO buscaAssociadoPorCpf(@PathVariable String cpf) {
+		logger.info("Acessou controller de buscar  associado por CPF");
 		return associadoService.buscarAssociadoPorCPF(cpf);
 	}
 	
