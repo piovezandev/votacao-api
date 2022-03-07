@@ -1,9 +1,12 @@
 package br.com.avaliacao.cooperativismo.votacaoapi.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class VotacaoDTO {
 	
 	private String nome;
 	private String cpf;
+	@ApiModelProperty(example = "SIM", required = true)
 	private String voto;
 	
 	VotacaoDTO(){}
