@@ -64,7 +64,14 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		<!-- UNIT TEST-->
+			<!-- UNIT TEST-->
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 		    <groupId>org.mockito</groupId>
 		    <artifactId>mockito-all</artifactId>
