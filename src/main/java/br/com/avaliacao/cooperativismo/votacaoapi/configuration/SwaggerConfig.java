@@ -1,4 +1,4 @@
-package br.com.avaliacao.cooperativismo.votacaoapi;
+package br.com.avaliacao.cooperativismo.votacaoapi.configuration;
 
 import java.util.List;
 
