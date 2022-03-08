@@ -7,7 +7,6 @@ Projeto criado para fins de teste
 ## Ferramentas utilizadas
  
  
-* React framework 12.0.0
 * Java 11
 * PostgreSQL 14.1
 * PgAdmin 6.4
