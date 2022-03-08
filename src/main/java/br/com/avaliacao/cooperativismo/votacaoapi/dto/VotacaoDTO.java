@@ -9,7 +9,7 @@ public class VotacaoDTO {
 	@ApiModelProperty(example = "SIM", required = true)
 	private String voto;
 	
-	VotacaoDTO(){}
+	public VotacaoDTO(){}
 
 	public String getNome() {
 		return nome;
