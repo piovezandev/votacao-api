@@ -13,4 +13,8 @@ Projeto criado para fins de teste
 * IDE eclipse com plugin Sprint tool suite 2021-09 (4.21.0)
 * Postman 8.12.5
 
- 
+  
+## Links
+
+* API: https://votacaoapi.herokuapp.com/
+* API documentada: https://votacaoapi.herokuapp.com/swagger-ui.html
