@@ -13,6 +13,11 @@ import br.com.avaliacao.cooperativismo.votacaoapi.dto.AssociadoDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Associado;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.AssociadoRepository;
 
+/**
+ * Classe responsavel por conter as regras de negocio responsaveis pela gestão dos <b>Associados</b>
+ * @author alan
+ * @since 2022
+ */
 @Service
 public class AssociadoService {
 	

@@ -21,6 +21,13 @@ import br.com.avaliacao.cooperativismo.votacaoapi.repositories.PautaRepository;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.VotacaoRepository;
 import br.com.avaliacao.cooperativismo.votacaoapi.utils.UserAPI;
 
+/**
+ * Classe responsavel por conter as regras de negocio responsaveis pela gestão das <b>Votações.</b><br>
+ * Toda regra de negocio voltada a criação de Pauta, validação de Associado e gerenciamento de votos<br>
+ * é feita aqui.
+ * @author alan
+ * @since 2022
+ */
 @Service
 public class VotacaoService {
 

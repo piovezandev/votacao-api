@@ -14,6 +14,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+/**
+ * Classe responsavel por gerenciar a parte de configuração do spring security e tambem manioular a ENV de <b>test</b>
+ * @author alan
+ * @since 2022
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

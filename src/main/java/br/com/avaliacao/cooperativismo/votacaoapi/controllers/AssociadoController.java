@@ -18,6 +18,11 @@ import br.com.avaliacao.cooperativismo.votacaoapi.entities.Associado;
 import br.com.avaliacao.cooperativismo.votacaoapi.services.AssociadoService;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * Controller responsavel por conter os metodos de cadastro/busca de <b>Associados</b>
+ * @author alan
+ * @since 2022
+ */
 @RestController
 @RequestMapping(value = "/associado")
 public class AssociadoController {

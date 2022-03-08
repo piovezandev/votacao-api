@@ -15,6 +15,11 @@ import br.com.avaliacao.cooperativismo.votacaoapi.dto.PautaDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.services.PautaService;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * Controller responsavel por conter os metodos de busca de <b>Pautas</b>
+ * @author alan
+ * @since 2022
+ */
 @RestController
 @RequestMapping(value = "/pautas")
 public class PautaController {

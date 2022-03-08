@@ -17,6 +17,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+/**
+ * Controller responsavel por conter os metodos de cadastro de <b>Votações</b>
+ * @author alan
+ * @since 2022
+ */
 @RestController
 @RequestMapping(value = "/votacao")
 public class VotacaoController {

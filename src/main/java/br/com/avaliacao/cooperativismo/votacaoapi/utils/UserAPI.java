@@ -8,6 +8,12 @@ import org.springframework.web.client.RestTemplate;
 import br.com.avaliacao.cooperativismo.votacaoapi.dto.StatusDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.enumeration.VotacaoEnum;
 
+/**
+ * Classe responsavel por consumir a API que valida se o CPF é valido, retornando <b>404</b>
+ * se o mesmo não for valido.
+ * @author alan
+ * @since 2022
+ */
 @Service
 public class UserAPI {
 	

@@ -13,6 +13,11 @@ import br.com.avaliacao.cooperativismo.votacaoapi.dto.PautaDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Pauta;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.PautaRepository;
 
+/**
+ * Classe responsavel por conter as regras de negocio responsaveis pela gestão das <b>Pautas</b>
+ * @author alan
+ * @since 2022
+ */
 @Service
 public class PautaService {
 
