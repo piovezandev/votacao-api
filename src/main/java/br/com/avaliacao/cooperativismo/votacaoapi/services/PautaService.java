@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.avaliacao.cooperativismo.votacaoapi.controllers.PautaController;
 import br.com.avaliacao.cooperativismo.votacaoapi.dto.PautaDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Pauta;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.PautaRepository;

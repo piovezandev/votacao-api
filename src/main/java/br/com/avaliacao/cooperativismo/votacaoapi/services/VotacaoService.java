@@ -10,23 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 import br.com.avaliacao.cooperativismo.votacaoapi.dto.PautaDTO;
-import br.com.avaliacao.cooperativismo.votacaoapi.dto.StatusDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.dto.VotacaoDTO;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Associado;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Pauta;
 import br.com.avaliacao.cooperativismo.votacaoapi.entities.Votacao;
-import br.com.avaliacao.cooperativismo.votacaoapi.enumeration.VotacaoEnum;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.AssociadoRepository;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.PautaRepository;
 import br.com.avaliacao.cooperativismo.votacaoapi.repositories.VotacaoRepository;
+import br.com.avaliacao.cooperativismo.votacaoapi.utils.UserAPI;
 
 @Service
 public class VotacaoService {
 
-	private static final String VALIDA_CPF_API = "https://user-info.herokuapp.com/users/%s";
 	Logger logger = LoggerFactory.getLogger(VotacaoService.class);
 
 	@Autowired
@@ -41,9 +38,12 @@ public class VotacaoService {
 	@Autowired
 	private PautaService pautaService;
 
+	@Autowired
+	private UserAPI userAPI;
+
 	@Transactional
 	public ResponseEntity<PautaDTO> criaSessaoVotoPauta(VotacaoDTO votacaoDTO) {
-		boolean isDeveVotar = validaCpf(votacaoDTO.getCpf());
+		boolean isDeveVotar = userAPI.validaCpf(votacaoDTO.getCpf());
 
 		logger.info(String.format("CPF valido? : %s", isDeveVotar));
 		
@@ -109,20 +109,6 @@ public class VotacaoService {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
-	private Boolean validaCpf(String cpf) {
-		RestTemplate restTemplate = new RestTemplate();
-
-		StatusDTO status = restTemplate.getForObject(String.format(VALIDA_CPF_API, cpf.trim()), StatusDTO.class);
-
-		logger.info(String.format("Validando CPF, response API : %s", status.getStatus()));
-		
-		if (status.getStatus().equals(VotacaoEnum.ABLE_TO_VOTE.isDeveVotar)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	private Integer getSomaVotos(Long id) {
 		List<Votacao> listaEntidade = votacaoRepository.findAll();
 
@@ -159,10 +145,10 @@ public class VotacaoService {
 	private  Boolean getVotoAssociadoDuplicado(Long id, Long idAssociado) {
 		List<Votacao> listaEntidade = votacaoRepository.findAll();
 
-		boolean teste = listaEntidade.stream()
+		boolean isDuplicado = listaEntidade.stream()
 				.anyMatch(p -> p.getId().getPauta().getId() == id && p.getId().getAssociado().getId() == idAssociado);
 
-		return teste;
+		return isDuplicado;
 	}
 
 }
